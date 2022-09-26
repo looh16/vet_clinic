@@ -4,7 +4,7 @@
 SELECT * FROM animals WHERE name like '%mon';
 
 --List the name of all animals born between 2016 and 2019
-SELECT name FROM animals WHERE date_of_birth >= '2016-01-01' AND date_of_birth <= '2019-3-12';
+SELECT name FROM animals WHERE date_of_birth >= '2016-01-01' AND date_of_birth <= '2019-31-12';
 
 --List the name of all animals that are neutered and have less than 3 escape attempts
 SELECT name FROM animals  WHERE neutered = 't' AND escape_attempts < 3;
