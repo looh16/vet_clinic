@@ -14,3 +14,6 @@ CREATE TABLE animals (
     PRIMARY KEY(id)
 );
 
+--Add column species in animals table
+ALTER TABLE animals ADD species varchar(100);
+
