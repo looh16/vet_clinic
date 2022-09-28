@@ -31,3 +31,12 @@ CREATE TABLE species (
     name varchar(100),
     PRIMARY KEY(id)
 );
+
+--Remove column species
+ALTER TABLE animals DROP COLUMN species;
+
+--Add column species_id which is a foreign key referencing species table
+--Add column owner_id which is a foreign key referencing the owners table
+ALTER TABLE animals
+  ADD species_id INT REFERENCES species(id),
+  ADD owner_id INT REFERENCES owners(id);
