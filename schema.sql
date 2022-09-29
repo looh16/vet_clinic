@@ -60,9 +60,9 @@ CREATE TABLE specializations (
     id INT GENERATED ALWAYS AS IDENTITY,
     species_id INT,
     vet_id INT,
+    PRIMARY KEY(id),
     FOREIGN KEY(species_id) REFERENCES species(id),
-    FOREIGN KEY(vet_id) REFERENCES vets(id),
-    PRIMARY KEY(id)
+    FOREIGN KEY(vet_id) REFERENCES vets(id)
 );
 
 /*There is a many-to-many relationship between the tables animals and vets:  an animal can visit multiple 
@@ -74,9 +74,9 @@ CREATE TABLE visits (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
     animals_id INT,
     vet_id INT,
+    date_of_visit DATE NOT NULL,
     FOREIGN KEY(animals_id) REFERENCES animals(id),
-    FOREIGN KEY(vet_id) REFERENCES vets(id),
-    date_of_visit DATE NOT NULL 
+    FOREIGN KEY(vet_id) REFERENCES vets(id) 
 );
 
 
