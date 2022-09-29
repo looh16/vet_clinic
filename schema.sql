@@ -40,3 +40,43 @@ ALTER TABLE animals DROP COLUMN species;
 ALTER TABLE animals
   ADD species_id INT REFERENCES species(id),
   ADD owner_id INT REFERENCES owners(id);
+
+  --create table vets
+CREATE TABLE vets (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name varchar(100),
+    date_of_graduation date,
+    age INT,
+    PRIMARY KEY(id)
+);
+
+/*There is a many-to-many relationship between the tables species and vets: 
+a vet can specialize in multiple species, 
+and a species can have multiple vets specialized in it. Create a "join table" called 
+specializations to handle this relationship.*/
+
+--create join table specializations
+CREATE TABLE specializations (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    species_id INT,
+    vet_id INT,
+    FOREIGN KEY(species_id) REFERENCES species(id),
+    FOREIGN KEY(vet_id) REFERENCES vets(id),
+    PRIMARY KEY(id)
+);
+
+/*There is a many-to-many relationship between the tables animals and vets:  an animal can visit multiple 
+vets and one vet can be visited by multiple animals. Create a "join table" called visits to handle this relationship, 
+it should also keep track of the date of the visit.*/
+
+-- Create join table visits
+CREATE TABLE visits (
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    animals_id INT,
+    vet_id INT,
+    FOREIGN KEY(animals_id) REFERENCES animals(id),
+    FOREIGN KEY(vet_id) REFERENCES vets(id),
+    date_of_visit DATE NOT NULL 
+);
+
+
