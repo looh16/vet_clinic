@@ -192,6 +192,11 @@ INNER JOIN species spc ON an.species_id = spc.id
 WHERE vt.name = 'Maisy Smith'
 group by an.species_id, spc.name;
 
+--performance audit
+SELECT COUNT(*) FROM visits where animal_id = 4;
+SELECT * FROM visits where vet_id = 2;
+SELECT * FROM owners where email = 'owner_18327@mail.com';
+
 
 
 
