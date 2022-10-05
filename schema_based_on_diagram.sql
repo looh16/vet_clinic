@@ -24,6 +24,38 @@ CREATE TABLE treatments (
     PRIMARY KEY (id)
 );
 
+-- create Table medical_histories_treatment
+CREATE TABLE medical_histories_treatment (
+    id INT  GENERATED ALWAYS AS IDENTITY,
+    medical_history_id INT REFERENCES medical_histories(id),
+    treatment_id INT REFERENCES treatments(id),
+    PRIMARY KEY (id)
+);
+
+-- create Table invoices
+CREATE TABLE invoices (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    total_amount DECIMAL,
+    generated_at TIMESTAMP,
+    payed_at TIMESTAMP,
+    medical_history_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY(medical_history_id) REFERENCES medical_histories(id) 
+);
+
+-- create Table invoice_items
+CREATE TABLE invoice_items (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    unit_price  DECIMAL,
+    quantity INT,
+    total_price DECIMAL,
+    treatment_id INT,
+    invoice_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY(treatment_id) REFERENCES treatments(id),
+    FOREIGN KEY(invoice_id) REFERENCES invoices(id)  
+);
+
 --create FK indexes
 CREATE INDEX ON medical_histories_has_treatments (medical_history_id);
 CREATE INDEX ON medical_histories_has_treatments (treatment_id);
